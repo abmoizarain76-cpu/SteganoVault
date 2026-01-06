@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SteganoVault | Secure Data Hider</title>
+    <!-- Google Fonts for Tech Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index2.css">
+    <script src="index2.js" defer></script>
+</head>
+<body>
+    <header>
+         <h1>Stegano<span style="color:var(--neon-pink)">Vault</span></h1>
+        <p>Quantum-Grade Image Steganography Tool</p>
+    </header>
+
+    <div class="main-container">
+        
+        <!-- ENCRYPTION PANEL -->
+        <div class="card">
+            <div class="card-header">
+                <h2>🔒 ENCRYPT</h2>
+                <span>Hide Data</span>
+            </div>
+            
+           <div class="drop-zone" id="drop-zone-enc" onclick="document.getElementById('file-enc').click()">
+                <p>Drag Image Here or Click</p>
+                <img id="preview-enc" class="hidden"> 
+            </div>
+            <input type="file" id="file-enc" accept="image/*">
+
+            <textarea id="message" placeholder="Enter Secret Message..." rows="3"></textarea>
+            <input type="password" id="pass-enc" placeholder="Set a Password" required>
+
+            <button class="btn-action" onclick="encodeImage()">Lock Data</button>
+            <div id="status-enc" class="status-msg"></div>
+
+            <a id="download-link" class="hidden">
+                <button class="btn-action" id="download-btn">⬇ Download Secure Image</button>
+            </a>
+        </div>
+
+        <!-- DECRYPTION PANEL -->
+        <div class="card" style="border-color: rgba(255, 0, 85, 0.3);">
+            <div class="card-header">
+                <h2 style="color: var(--neon-pink);">🔓 DECRYPT</h2>
+                <span>Reveal Data</span>
+            </div>
+
+            <div class="drop-zone" id="drop-zone-dec" onclick="document.getElementById('file-dec').click()">
+                <p>Drag Encoded Image Here</p>
+                <img id="preview-dec" class="hidden">
+            </div>
+            <input type="file" id="file-dec" accept="image/*">
+
+            <input type="password" id="pass-dec" placeholder="Enter Password to Unlock">
+            
+            <button class="btn-action btn-decrypt" onclick="decodeImage()">Unlock Data</button>
+            
+            <div id="result-area" class="hidden" style="margin-top: 20px; background: black; padding: 15px; border-radius: 5px; border: 1px dashed var(--neon-pink);">
+                <span style="color:#aaa; font-size: 0.8rem;">DECODED MESSAGE:</span><br>
+                <strong id="decoded-msg" style="color: var(--neon-pink); font-size: 1.1rem; word-break: break-all;"></strong>
+            </div>
+            <div id="status-dec" class="status-msg"></div>
+        </div>
+
+    </div>
+
+    <!-- Hidden Canvas Processor -->
+    <canvas id="canvas" class="hidden"></canvas>
+</body>
+</html>
